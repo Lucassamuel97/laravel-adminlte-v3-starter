@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,4 +30,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('products', ProductController::class);
 
     Route::resource('users', UserController::class)->middleware('can:viewAny,App\Models\User');
+
+    Route::get('/profile/password', [ProfileController::class, 'changePasswordForm'])->name('profile.change_password_form');
+    Route::put('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.update_password');
 });
