@@ -2,9 +2,9 @@
 SHELL := /bin/bash
 
 # Comandos Docker Compose
-COMPOSE_UP = docker-compose up --build -d
-COMPOSE_DOWN = docker-compose down
-COMPOSE_EXEC_APP = docker-compose exec app
+COMPOSE_UP        = docker-compose up --build -d
+COMPOSE_DOWN      = docker-compose down
+COMPOSE_EXEC_APP  = docker-compose exec app
 
 # Comandos Artisan e Composer
 ARTISAN = $(COMPOSE_EXEC_APP) php artisan
@@ -14,13 +14,36 @@ COMPOSER = $(COMPOSE_EXEC_APP) composer
 .SILENT:
 
 # Alvos que não são arquivos
-.PHONY: setup up down stop logs artisan composer npm adminlte ui
+.PHONY: setup up down stop logs artisan composer npm
 
 ## --------------------------------------
-## Setup Inicial
+## Gerenciamento do Ambiente
 ## --------------------------------------
 
-setup: up ## Executa toda a configuração inicial do projeto
+up: .env  ## Sobe os containers (sem executar comandos do Laravel por padrão)
+	@echo "🐳 Subindo containers Docker..."
+	$(COMPOSE_UP)
+	@sleep 10 # Dê um tempo para o MySQL inicializar
+	@echo "🚀 Aplicação (e banco) subindo em segundo plano."
+	@echo "Acesse http://localhost:8080 após o setup inicial, se já rodou."
+
+down:      ## Para e remove os containers
+	@echo "🛑 Parando e removendo containers..."
+	$(COMPOSE_DOWN)
+
+stop:      ## Apenas para os containers, sem remover
+	@echo "⏸️ Parando containers..."
+	docker-compose stop
+
+logs:      ## Mostra os logs de um serviço (ex: make logs service=app)
+	@echo "📋 Logs do serviço: $(service)..."
+	docker-compose logs -f $(service)
+
+## --------------------------------------
+## Setup Inicial (executar apenas na primeira vez ou para reinstalação de dependências)
+## --------------------------------------
+
+setup: up  ## Executa a configuração inicial do projeto Laravel
 	@echo "📦 Instalando dependências do Composer..."
 	$(COMPOSER) install
 	@echo "📁 Copiando .env.example para .env (se necessário)..."
@@ -33,18 +56,11 @@ setup: up ## Executa toda a configuração inicial do projeto
 	$(ARTISAN) config:cache
 	@echo "🧬 Rodando migrações e seeders..."
 	$(ARTISAN) migrate --seed
-	@echo "🎨 Instalando AdminLTE e UI..."
-	$(ARTISAN) adminlte:install
-	$(ARTISAN) ui bootstrap --auth
+	@echo "📦 Instalando dependências NPM (no host)..."
 	npm install
+	@echo "⚙️ Compilando assets (no host)..."
 	npm run dev
-	@echo "🔐 Painel Admin com login criado!"
-	@echo "🚀 Aplicação rodando em http://localhost:8000"
-
-up: .env ## Sobe os containers
-	@echo "🐳 Subindo containers Docker..."
-	$(COMPOSE_UP)
-	@sleep 5
+	@echo "✅ Setup inicial do ambiente concluído! Aplicação rodando em http://localhost:8080"
 
 .env:
 	@if [ ! -f .env ]; then \
@@ -53,33 +69,17 @@ up: .env ## Sobe os containers
 	fi
 
 ## --------------------------------------
-## Gerenciamento do Ambiente
-## --------------------------------------
-
-down: ## Para e remove os containers
-	@echo "🛑 Parando e removendo containers..."
-	$(COMPOSE_DOWN)
-
-stop: ## Apenas para os containers, sem remover
-	@echo "⏸️ Parando containers..."
-	docker-compose stop
-
-logs: ## Mostra os logs de um serviço (ex: make logs service=app)
-	@echo "📋 Logs do serviço: $(service)..."
-	docker-compose logs -f $(service)
-
-## --------------------------------------
 ## Comandos Auxiliares
 ## --------------------------------------
 
-artisan: ## Executa um comando Artisan (ex: make artisan cmd="migrate:fresh")
+artisan:   ## Executa um comando Artisan (ex: make artisan cmd="migrate:fresh")
 	@echo "⚙️ Executando: php artisan $(cmd)"
 	$(ARTISAN) $(cmd)
 
-composer: ## Executa um comando Composer (ex: make composer cmd="require spatie/laravel-permission")
+composer:  ## Executa um comando Composer (ex: make composer cmd="require spatie/laravel-permission")
 	@echo "🎼 Executando: composer $(cmd)"
 	$(COMPOSER) $(cmd)
 
-npm: ## Executa um comando npm no host (ex: make npm cmd="run dev")
+npm:       ## Executa um comando npm no host (ex: make npm cmd="run dev")
 	@echo "📦 Executando: npm $(cmd)"
 	npm $(cmd)
