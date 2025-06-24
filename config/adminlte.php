@@ -14,9 +14,9 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3 - Samuca Admin',
-    'title_prefix' => 'Samuca Admin',
-    'title_postfix' => 'Samuca Admin',
+    'title' => 'Admin - Samuca ',
+    'title_prefix' => 'Sistema X',
+    'title_postfix' => 'Admin - Samuca',
 
     /*
     |--------------------------------------------------------------------------
@@ -326,6 +326,12 @@ return [
             'icon' => 'fas fa-box',
             'label_color' => 'success',
         ],
+        [
+            'text' => 'Gerenciar Usuários',
+            'url' => 'users', 
+            'icon' => 'fas fa-users', 
+            'can' => 'manage-users', 
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
@@ -375,22 +381,22 @@ return [
                 ],
             ],
         ],
-        ['header' => 'labels'],
-        [
-            'text' => 'important',
-            'icon_color' => 'red',
-            'url' => '#',
-        ],
-        [
-            'text' => 'warning',
-            'icon_color' => 'yellow',
-            'url' => '#',
-        ],
-        [
-            'text' => 'information',
-            'icon_color' => 'cyan',
-            'url' => '#',
-        ],
+        // ['header' => 'labels'],
+        // [
+        //     'text' => 'important',
+        //     'icon_color' => 'red',
+        //     'url' => '#',
+        // ],
+        // [
+        //     'text' => 'warning',
+        //     'icon_color' => 'yellow',
+        //     'url' => '#',
+        // ],
+        // [
+        //     'text' => 'information',
+        //     'icon_color' => 'cyan',
+        //     'url' => '#',
+        // ],
     ],
 
     /*
