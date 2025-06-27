@@ -1,5 +1,4 @@
-{{-- Exemplo para create.blade.php e edit.blade.php --}}
-@extends('adminlte::page')
+@extends('layouts.app')
 
 {{-- ... title e content_header ... --}}
 
