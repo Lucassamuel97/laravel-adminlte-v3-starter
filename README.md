@@ -1,66 +1,101 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel AdminLTE v3 Starter
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+🚀 Projeto base para aplicações administrativas em Laravel 10 com **AdminLTE 3** totalmente integrado. Ideal para iniciar rapidamente o desenvolvimento de painéis administrativos modernos, com um ambiente pronto para desenvolvimento local usando **Docker** e um **Makefile** com comandos automatizados.
 
-## About Laravel
+## 🧰 Tecnologias Utilizadas
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Laravel 10**
+- **AdminLTE 3** (via `jeroennoten/laravel-adminlte`)
+- **PHP 8.2+**
+- **MySQL 8**
+- **Docker + Docker Compose**
+- **Makefile** (automação de setup e execução)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 📁 Estrutura do Projeto
 
-## Learning Laravel
+Este projeto já vem com:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Laravel 10 instalado e configurado
+- Pacote AdminLTE pré-configurado
+- Docker Compose para ambiente de desenvolvimento local
+- Makefile com comandos para facilitar o uso
+- CRUD básico de *Produtos* para demonstração
+- CRUD básico de usuários para administradores
+- Configuração de autenticação padrão
+- Migrações e seeders para usuários
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🚀 Como Começar
 
-## Laravel Sponsors
+### 1. Pré-requisitos
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- [Docker](https://www.docker.com/)
+- [Make](https://www.gnu.org/software/make/)
+- [Node.js e NPM](https://nodejs.org/)
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### 2. Subir o Projeto
 
-## Contributing
+Execute no terminal:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+make setup
+```
 
-## Code of Conduct
+Esse comando irá:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- Subir os containers com Docker
+- Instalar dependências do Composer
+- Criar o arquivo `.env` se necessário
+- Gerar a chave da aplicação
+- Limpar e cachear as configurações
+- Rodar as migrações e seeders
+- Instalar dependências do NPM
+- Compilar os assets
 
-## Security Vulnerabilities
+Após finalizado, a aplicação estará disponível em: [http://localhost:8080](http://localhost:8080)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+**Usuário Padrão:** `admin@admin.com`  
+**Senha:** `password`
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 🛠️ Comandos Úteis
+
+Todos os comandos são executados via `make`.
+
+| Comando                | Descrição                                               |
+|------------------------|--------------------------------------------------------|
+| `make setup`           | Realiza a configuração inicial do projeto              |
+| `make up`              | Sobe os containers Docker                              |
+| `make down`            | Para e remove os containers Docker                     |
+| `make stop`            | Apenas para os containers (sem remover)                |
+| `make logs`            | Exibe os logs do serviço (`make logs service=app`)     |
+| `make artisan`         | Executa comandos do Artisan (`make artisan cmd="migrate"`) |
+| `make composer`        | Executa comandos do Composer (`make composer cmd="install"`) |
+| `make npm`             | Executa comandos do NPM (`make npm cmd="run dev"`)     |
+
+---
+
+## 🧑‍💻 Contribuindo
+
+Sinta-se à vontade para clonar este projeto e adaptá-lo conforme as necessidades da sua aplicação.
+
+```bash
+git clone https://github.com/seu-usuario/laravel-adminlte-v3-starter.git
+cd laravel-adminlte-v3-starter
+make setup
+```
+
+---
+
+❤️ **Créditos**  
+Este projeto utiliza:
+
+- [Laravel](https://laravel.com/)
+- [AdminLTE](https://adminlte.io/)
+- [Laravel-AdminLTE](https://github.com/jeroennoten/Laravel-AdminLTE)
