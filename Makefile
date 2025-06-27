@@ -83,3 +83,9 @@ composer:  ## Executa um comando Composer (ex: make composer cmd="require spatie
 npm:       ## Executa um comando npm no host (ex: make npm cmd="run dev")
 	@echo "📦 Executando: npm $(cmd)"
 	npm $(cmd)
+	
+test:  ## Executa os testes com config:clear antes
+	@echo "🧹 Limpando cache de configuração..."
+	$(ARTISAN) config:clear
+	@echo "✅ Rodando testes (ambiente .env.testing)..."
+	APP_ENV=testing $(ARTISAN) test

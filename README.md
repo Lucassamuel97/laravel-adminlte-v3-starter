@@ -78,6 +78,7 @@ Todos os comandos são executados via `make`.
 | `make artisan`         | Executa comandos do Artisan (`make artisan cmd="migrate"`) |
 | `make composer`        | Executa comandos do Composer (`make composer cmd="install"`) |
 | `make npm`             | Executa comandos do NPM (`make npm cmd="run dev"`)     |
+| `make test`            | Executa os testes do PHPUnit                           |
 
 ---
 
