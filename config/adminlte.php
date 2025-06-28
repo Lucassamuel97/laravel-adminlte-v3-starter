@@ -340,6 +340,12 @@ return [
             'active' => ['products*'],
         ],
         [
+            'text' => 'Clientes',
+            'url' => 'customers',
+            'icon' => 'fas fa-users',
+            'active' => ['customers*'],
+        ],
+        [
             'text' => 'Gerenciar Usuários',
             'url' => 'users', 
             'icon' => 'fas fa-users', 

@@ -4,6 +4,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,4 +43,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('users', UserController::class)->middleware('can:viewAny,App\Models\User');
     Route::get('/profile/password', [ProfileController::class, 'changePasswordForm'])->name('profile.change_password_form');
     Route::put('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.update_password');
+
+    // Rotas para o gerenciamento de clientes
+    Route::resource('customers', CustomerController::class);
 });

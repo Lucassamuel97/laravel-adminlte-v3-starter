@@ -52,6 +52,12 @@ class User extends Authenticatable
     {
         return $this->role === 'operador';
     }
+
+    public function isCliente(): bool
+    {
+        return $this->role === 'cliente';
+    }
+
     public function events()
     {
         return $this->hasMany(Event::class);    
