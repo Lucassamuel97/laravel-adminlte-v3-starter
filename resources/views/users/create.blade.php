@@ -2,9 +2,7 @@
 
 @section('title', 'Novo Usuário')
 
-@section('content_header')
-    <h1>Criar Novo Usuário</h1>
-@stop
+@section('content_header_title', 'Criar Novo Usuário')
 
 @section('content')
     <div class="card">

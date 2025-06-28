@@ -1,10 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Editar Usuário')
-
-@section('content_header')
-    <h1>Editar Usuário: {{ $user->name }}</h1>
-@stop
+@section('content_header_title', 'Editar Usuário')
+@section('content_header_subtitle',  $user->name ?? 'Usuário')
 
 @section('content')
     <div class="card">

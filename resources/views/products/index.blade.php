@@ -2,9 +2,7 @@
 
 @section('title', 'Produtos')
 
-@section('content_header')
-    <h1>Lista de Produtos</h1>
-@stop
+@section('content_header_title', 'Lista de Produtos')
 
 @section('content')
     <div class="card">

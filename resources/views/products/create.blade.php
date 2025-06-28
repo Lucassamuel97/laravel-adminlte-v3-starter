@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-{{-- ... title e content_header ... --}}
+@section('content_header_title', 'Criar Novo Produto')
 
 @section('content')
     <div class="card">

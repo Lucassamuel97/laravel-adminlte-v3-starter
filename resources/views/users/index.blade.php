@@ -1,15 +1,9 @@
 @extends('layouts.app')
 
 @section('title', 'Gerenciar Usuários')
+@section('plugins.Datatables', true)
 
-@section('css')
-    <link rel="stylesheet" href="{{ asset('vendor/datatables/css/dataTables.bootstrap4.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendor/datatables-plugins/responsive/css/responsive.bootstrap4.min.css') }}">
-@stop
-
-@section('content_header')
-    <h1>Gerenciar Usuários</h1>
-@stop
+@section('content_header_title', 'Gerenciar Usuários')
 
 @section('content')
     <div class="card">
@@ -45,16 +39,10 @@
 @stop
 
 @section('js')
-    <script src="{{ asset('vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('vendor/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('vendor/datatables-plugins/responsive/js/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('vendor/datatables-plugins/responsive/js/responsive.bootstrap4.min.js') }}"></script>
-
     <script>
         $(document).ready(function() {
             $('.alert').delay(3000).fadeOut('slow');
 
-            // Inicializa o DataTables
             $('#users-table').DataTable({
                 processing: true, // Mostra o indicador de processamento
                 serverSide: true, // Habilita o processamento do lado do servidor

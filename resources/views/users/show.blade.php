@@ -2,9 +2,8 @@
 
 @section('title', 'Detalhes do Usuário')
 
-@section('content_header')
-    <h1>Detalhes do Usuário: {{ $user->name }}</h1>
-@stop
+@section('content_header_title', 'Detalhes do Usuário')
+@section('content_header_subtitle',  $user->name ?? 'Usuário')
 
 @section('content')
     <div class="card">
