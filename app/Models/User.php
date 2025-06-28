@@ -52,4 +52,8 @@ class User extends Authenticatable
     {
         return $this->role === 'operador';
     }
+    public function events()
+    {
+        return $this->hasMany(Event::class);    
+    }    
 }

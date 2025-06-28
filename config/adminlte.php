@@ -316,6 +316,19 @@ return [
             'text' => 'search',
         ],
         [
+            'text' => 'Dashboard',
+            'url' => 'home',
+            'icon' => 'fas fa-fw fa-tachometer-alt',
+            'active' => ['home*'],
+        ],
+        ['header' => 'Gerenciamento'],
+        [
+            'text' => 'Calendário',
+            'url' => 'calendar',
+            'icon' => 'fas fa-fw fa-calendar-alt',
+            'active' => ['calendar*'],
+        ],
+        [
             'text' => 'blog',
             'url' => 'admin/blog',
             'can' => 'manage-blog',
@@ -477,12 +490,52 @@ return [
             ],
         ],
         'Sweetalert2' => [
-            'active' => false,
+            'active' => true, 
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
+                    'asset' => true, 
+                    'location' => 'vendor/sweetalert2/sweetalert2.min.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true, 
+                    'location' => 'vendor/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css',
+                ],
+            ],
+        ],
+        'Moment' => [
+            'active' => true, 
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/moment/moment.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/moment/locale/pt-br.js', 
+                ],
+            ],
+        ],
+        'FullCalendar' => [
+            'active' => true, 
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/fullcalendar/main.min.js', 
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/fullcalendar/locales-all.min.js', 
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/fullcalendar/main.min.css', 
                 ],
             ],
         ],
