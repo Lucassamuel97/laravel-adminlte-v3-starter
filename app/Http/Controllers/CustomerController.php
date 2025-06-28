@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use App\Http\Requests\StoreCustomerRequest;
+use App\Http\Requests\UpdateCustomerRequest;
 
 class CustomerController extends Controller
 {
@@ -47,19 +49,9 @@ class CustomerController extends Controller
         return view('customers.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreCustomerRequest $request)
     {
-        $request->validate([
-            'nome' => 'required',
-            'email' => 'required|email|unique:customers',
-            'telefone' => 'required',
-            'endereco' => 'required',
-            'cpf' => 'required|unique:customers',
-            'rg' => 'required|unique:customers',
-            'data_nascimento' => 'required|date',
-        ]);
-
-        Customer::create($request->all());
+        Customer::create($request->validated());
 
         return redirect()->route('customers.index')
             ->with('success', 'Cliente criado com sucesso.');
@@ -75,19 +67,9 @@ class CustomerController extends Controller
         return view('customers.edit', compact('customer'));
     }
 
-    public function update(Request $request, Customer $customer)
+    public function update(UpdateCustomerRequest $request, Customer $customer)
     {
-        $request->validate([
-            'nome' => 'required',
-            'email' => 'required|email|unique:customers,email,' . $customer->id,
-            'telefone' => 'required',
-            'endereco' => 'required',
-            'cpf' => 'required|unique:customers,cpf,' . $customer->id,
-            'rg' => 'required|unique:customers,rg,' . $customer->id,
-            'data_nascimento' => 'required|date',
-        ]);
-
-        $customer->update($request->all());
+        $customer->update($request->validated());
 
         return redirect()->route('customers.index')
             ->with('success', 'Cliente atualizado com sucesso.');

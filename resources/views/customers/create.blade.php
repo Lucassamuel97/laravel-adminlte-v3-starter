@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content_header_title', 'Criar Novo Cliente')
+@section('plugins.inputmask', true)
 
 @section('content')
     <div class="card">
@@ -23,4 +24,14 @@
             </form>
         </div>
     </div>
+@stop
+
+@section('js')
+    <script>
+        $(document).ready(function() {
+            $('#telefone').inputmask('(99) 99999-9999');
+            $('#cpf').inputmask('999.999.999-99');
+            $('#rg').inputmask('99.999.999-9');
+        });
+    </script>
 @stop
